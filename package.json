@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev:webhook": "ngrok http --url=instantly-moved-weasel.ngrok-free.app 3000 "
+    "dev:webhook": "ngrok http --url=instantly-moved-weasel.ngrok-free.app 3000"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.11.1",

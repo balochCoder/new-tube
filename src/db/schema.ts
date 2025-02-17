@@ -8,4 +8,12 @@ export const users = pgTable("users", {
     imageUrl: text("image_url").notNull(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
-}, (t) => [uniqueIndex("clerk_id_idx").on(t.clerkId)])
+}, (t) => [uniqueIndex("clerk_id_idx").on(t.clerkId)]);
+
+export const categories = pgTable("categories", {
+    id: uuid().primaryKey().defaultRandom(),
+    name: text("name").unique().notNull(),
+    description: text("description"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [uniqueIndex("name_idx").on(t.name)]);
