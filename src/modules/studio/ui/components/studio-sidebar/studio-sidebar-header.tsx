@@ -1,6 +1,8 @@
-import {useUser} from "@clerk/nextjs";
-import {SidebarHeader, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@/components/ui/sidebar";
 import Link from "next/link";
+
+import {useUser} from "@clerk/nextjs";
+
+import {SidebarHeader, SidebarMenuButton, SidebarMenuItem, useSidebar} from "@/components/ui/sidebar";
 import {UserAvatar} from "@/components/user-avatar";
 import {Skeleton} from "@/components/ui/skeleton";
 

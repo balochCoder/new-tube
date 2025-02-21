@@ -1,5 +1,6 @@
 import React from "react";
 import {SidebarProvider} from "@/components/ui/sidebar";
+
 import {HomeNavbar} from "@/modules/home/ui/components/home-navbar";
 import {HomeSidebar} from "@/modules/home/ui/components/home-sidebar";
 

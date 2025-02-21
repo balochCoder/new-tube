@@ -1,4 +1,8 @@
 "use client";
+import {usePathname} from "next/navigation";
+import Link from "next/link";
+import {LogOutIcon, VideoIcon} from "lucide-react";
+
 import {
     Sidebar,
     SidebarContent,
@@ -7,10 +11,8 @@ import {
     SidebarMenuButton,
     SidebarMenuItem
 } from "@/components/ui/sidebar";
-import Link from "next/link";
-import {LogOutIcon, VideoIcon} from "lucide-react";
-import {usePathname} from "next/navigation";
 import {Separator} from "@/components/ui/separator";
+
 import {StudioSidebarHeader} from "@/modules/studio/ui/components/studio-sidebar/studio-sidebar-header";
 
 export const StudioSidebar = () => {

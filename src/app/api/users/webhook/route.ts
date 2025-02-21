@@ -1,9 +1,11 @@
-import {Webhook} from 'svix'
 import {headers} from 'next/headers'
+import {Webhook} from 'svix'
+import {eq} from "drizzle-orm";
+
 import {WebhookEvent} from '@clerk/nextjs/server'
+
 import {db} from "@/db";
 import {users} from "@/db/schema";
-import {eq} from "drizzle-orm";
 
 export async function POST(req: Request) {
     const SIGNING_SECRET = process.env.CLERK_SIGNING_SECRET

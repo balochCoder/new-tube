@@ -1,10 +1,13 @@
+import React from "react";
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
-import "./globals.css";
+
 import {ClerkProvider} from "@clerk/nextjs";
-import React from "react";
+
 import {TRPCProvider} from "@/trpc/client";
 import {Toaster} from "@/components/ui/sonner";
+
+import "./globals.css";
 
 const inter = Inter({
     variable: "--font-inter",

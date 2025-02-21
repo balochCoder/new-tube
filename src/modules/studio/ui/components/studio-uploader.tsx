@@ -1,10 +1,12 @@
+import {UploadIcon} from "lucide-react";
+
 import MuxUploader, {
     MuxUploaderDrop,
     MuxUploaderFileSelect,
     MuxUploaderProgress,
     MuxUploaderStatus
 } from "@mux/mux-uploader-react";
-import {UploadIcon} from "lucide-react";
+
 import {Button} from "@/components/ui/button";
 
 

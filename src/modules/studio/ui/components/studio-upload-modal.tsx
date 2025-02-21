@@ -1,9 +1,12 @@
 "use client";
-import {Button} from "@/components/ui/button";
 import {Loader, PlusIcon} from "lucide-react";
-import {trpc} from "@/trpc/client";
 import {toast} from "sonner";
+
+import {trpc} from "@/trpc/client";
+
+import {Button} from "@/components/ui/button";
 import {ResponsiveModal} from "@/components/responsive-modal";
+
 import {StudioUploader} from "@/modules/studio/ui/components/studio-uploader";
 
 export const StudioUploadModal = () => {

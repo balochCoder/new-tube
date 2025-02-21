@@ -1,6 +1,8 @@
 import {createTRPCRouter, protectedProcedure} from "@/trpc/init";
+
 import {db} from '@/db';
 import {videos} from "@/db/schema";
+
 import {mux} from "@/lib/mux";
 
 export const videosRouter = createTRPCRouter({
