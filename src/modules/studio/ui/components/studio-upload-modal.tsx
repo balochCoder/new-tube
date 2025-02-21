@@ -8,8 +8,10 @@ import {Button} from "@/components/ui/button";
 import {ResponsiveModal} from "@/components/responsive-modal";
 
 import {StudioUploader} from "@/modules/studio/ui/components/studio-uploader";
+import {useRouter} from "next/navigation";
 
 export const StudioUploadModal = () => {
+    const router = useRouter();
     const utils = trpc.useUtils();
 
     const create = trpc.videos.create.useMutation({
@@ -17,16 +19,23 @@ export const StudioUploadModal = () => {
             toast.success("Video Created")
             await utils.studio.getMany.invalidate()
         },
-        // onError: err => {
-        //     toast.error(err.message)
-        // }
+        onError: () => {
+            toast.error("Something went wrong")
+        }
     });
+
+    const onSuccess =  () => {
+        if (!create.data?.video.id) return;
+
+        create.reset();
+        router.push(`/studio/videos/${create.data.video.id}`);
+    }
     return (
         <>
             <ResponsiveModal open={!!create.data?.url} title="Upload a video" onOpenChange={() => create.reset()}>
                 {
                     create.data?.url
-                        ? <StudioUploader endpoint={create.data.url} onSuccess={()=>{}}/>
+                        ? <StudioUploader endpoint={create.data.url} onSuccess={onSuccess}/>
                         : <Loader className="animate-spin"/>
                 }
             </ResponsiveModal>
