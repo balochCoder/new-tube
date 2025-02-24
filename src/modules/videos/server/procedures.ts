@@ -8,8 +8,21 @@ import {and, eq} from "drizzle-orm";
 import {TRPCError} from "@trpc/server";
 import {z} from "zod";
 import {UTApi} from "uploadthing/server";
+import {workflow} from "@/lib/workflow";
 
 export const videosRouter = createTRPCRouter({
+    generateThumbnail: protectedProcedure
+        .input(z.object({id: z.string().uuid()}))
+        .mutation(async ({ctx, input}) => {
+            const {id: userId} = ctx.user;
+            const {workflowRunId} = await workflow.trigger({
+                url: `${process.env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
+                body: {userId, videoId: input.id},
+                retries: 3
+            });
+
+            return workflowRunId;
+        }),
     restoreThumbnail: protectedProcedure
         .input(z.object({id: z.string().uuid()}))
         .mutation(
@@ -56,12 +69,12 @@ export const videosRouter = createTRPCRouter({
 
                 const tempThumbnailUrl = `https://image.mux.com/${existingVideo.muxPlaybackId}/thumbnail.jpg`;
 
-                const uploadedThumbnail =  await utapi.uploadFilesFromUrl(tempThumbnailUrl);
+                const uploadedThumbnail = await utapi.uploadFilesFromUrl(tempThumbnailUrl);
                 if (!uploadedThumbnail.data) {
                     throw new TRPCError({code: "INTERNAL_SERVER_ERROR"})
                 }
 
-                const {key: thumbnailKey, ufsUrl: thumbnailUrl} = uploadedThumbnail.data;
+                const {key: thumbnailKey, url: thumbnailUrl} = uploadedThumbnail.data;
 
                 const [updatedVideo] = await db
                     .update(videos)

@@ -91,8 +91,8 @@ export const POST = async (request: Request) => {
                 return new Response("Failed to upload thumbnail or preview", {status: 500});
             }
 
-            const {key: thumbnailKey, ufsUrl: thumbnailUrl} = uploadedThumbnail.data;
-            const {key: previewKey, ufsUrl: previewUrl} = uploadedPreview.data;
+            const {key: thumbnailKey, url: thumbnailUrl} = uploadedThumbnail.data;
+            const {key: previewKey, url: previewUrl} = uploadedPreview.data;
 
             await db
                 .update(videos)
@@ -109,6 +109,7 @@ export const POST = async (request: Request) => {
                 .where(
                     eq(videos.muxUploadId, data.upload_id)
                 );
+
             break;
         }
         case "video.asset.errored": {

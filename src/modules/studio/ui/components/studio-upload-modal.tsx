@@ -24,7 +24,7 @@ export const StudioUploadModal = () => {
         }
     });
 
-    const onSuccess =  () => {
+    const onSuccess =   () => {
         if (!create.data?.video.id) return;
 
         create.reset();
