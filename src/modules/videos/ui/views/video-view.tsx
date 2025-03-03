@@ -1,4 +1,6 @@
 import { VideoSection } from "@/modules/videos/sections/video-section";
+import { SuggestionsSection } from "@/modules/videos/sections/suggestions-section";
+import { CommentsSection } from "@/modules/videos/sections/comments-section";
 
 interface VideoViewProps {
   videoId: string;
@@ -10,6 +12,13 @@ export const VideoView = ({ videoId }: VideoViewProps) => {
       <div className="flex flex-col xl:flex-row gap-6">
         <div className="flex-1 min-w-0">
           <VideoSection videoId={videoId} />
+          <div className="xl:hidden block mt-4">
+            <SuggestionsSection />
+          </div>
+          <CommentsSection />
+        </div>
+        <div className="hidden xl:block w-full xl:w-[380px] 2xl:w-[460px] shrink-1">
+          <SuggestionsSection />
         </div>
       </div>
     </div>
