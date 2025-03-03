@@ -200,7 +200,7 @@ const FormSectionSuspense = ({videoId}: FormSectionProps) => {
         update.mutate(data)
     }
     // TODO: Change if deploying outside vercel
-    const fullUrl = `${process.env.VERCEL_URL || "http://localhost:3000"}/studio/videos/${videoId}`;
+    const fullUrl = `${process.env.VERCEL_URL || "http://localhost:3000"}/videos/${videoId}`;
     const [isCopied, setIsCopied] = useState(false)
 
     const onCopy = async () => {
@@ -417,7 +417,7 @@ const FormSectionSuspense = ({videoId}: FormSectionProps) => {
                                                 Video Link
                                             </p>
                                             <div className="flex items-center gap-x-2">
-                                                <Link href={`/studio/videos/${video.id}`}>
+                                                <Link href={`/videos/${video.id}`}>
                                                     <p className="line-clamp-1 text-sm text-blue-500">
                                                         {fullUrl}
                                                     </p>
